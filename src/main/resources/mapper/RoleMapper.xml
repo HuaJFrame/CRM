@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huajframe.xycrm.mapper.RoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.huajframe.xycrm.entity.Role">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="code" column="code" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        sr.id,sr.name,sr.code,
+        sr.create_time,sr.update_time,sr.remark
+    </sql>
+    <select id="selectRoleListByUserId" resultType="com.huajframe.xycrm.entity.Role">
+        select <include refid="Base_Column_List"/>
+        from sys_user_role sur, sys_role sr
+        where sr.id = sur.role_id
+        and sur.user_id = #{id}
+    </select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huajframe.xycrm.mapper.DatadicMapper">
+
+    <resultMap id="BaseResultMap" type="com.huajframe.xycrm.entity.Datadic">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="dataDicName" column="data_dic_name" jdbcType="VARCHAR"/>
+            <result property="dataDicValue" column="data_dic_value" jdbcType="VARCHAR"/>
+            <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+            <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,data_dic_name,data_dic_value,
+        create_date,update_date
+    </sql>
+    <select id="nameList" resultType="java.lang.String">
+        select  data_dic_name from sys_datadic group by  data_dic_name
+    </select>
+</mapper>
